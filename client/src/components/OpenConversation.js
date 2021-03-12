@@ -1,12 +1,20 @@
 import React, { useState } from 'react'
 import { Form, InputGroup, Button } from 'react-bootstrap'
+import { useConversations } from "../contexts/ConversationsProvider"
 
 export default function OpenConversation() {
 
     const [text, setText] = useState("")
+    const { sendMessage, selectedConversation } = useConversations()
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        sendMessage(
+            selectedConversation.recipients.map(r => r.id),
+            text
+        )
+        sendText("")
     }
 
     return (
@@ -19,13 +27,13 @@ export default function OpenConversation() {
                     <InputGroup>
                         <Form.Control
                             as="textarea"
-                            required 
+                            required
                             value={text}
                             onChange={(e) => setText(e.target.value)}
-                            style={{ height: "75px", resize: "none"}}
+                            style={{ height: "75px", resize: "none" }}
                         />
                         <InputGroup.Append>
-                        <Button type="submit">Send</Button>
+                            <Button type="submit">Send</Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </Form.Group>
