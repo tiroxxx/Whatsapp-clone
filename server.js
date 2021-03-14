@@ -12,9 +12,13 @@ const io = require("socket.io")(server, {
 
 server.listen(PORT, () => {
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-    PORT,
-    PORT);
+        PORT,
+        PORT);
 })
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"))
+}
 
 io.on("connection", socket => {
     const id = socket.handshake.query.id
