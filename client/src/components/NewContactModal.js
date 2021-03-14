@@ -27,7 +27,7 @@ export default function NewContactModal({ closeModal }) {
                         <Form.Control type="text" ref={idRef} required />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>className</Form.Label>
+                        <Form.Label>Name</Form.Label>
                         <Form.Control type="text" ref={nameRef} required />
                     </Form.Group>
                     <Button type="submit">Create</Button>
