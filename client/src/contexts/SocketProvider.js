@@ -9,18 +9,16 @@ export function useSocket() {
 
 export function SocketProvider({ id, children }) {
     const [socket, setSocket] = useState()
-    const heroku = "https://watsupp.herokuapp.com/"
-    const local = "http://localhost:5000"
 
     useEffect(() => {
         const newSocket = io(
-            local,
+            "http://localhost:5000",
             { query: { id } }
         )
         setSocket(newSocket)
 
         return () => newSocket.close()
-    }, [id])
+    }, [id]) 
 
     return (
         <SocketContext.Provider value={socket}>
