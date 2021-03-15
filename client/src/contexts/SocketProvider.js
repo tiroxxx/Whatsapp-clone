@@ -9,11 +9,12 @@ export function useSocket() {
 
 export function SocketProvider({ id, children }) {
     const [socket, setSocket] = useState()
-    const port = "https://watsupp.herokuapp.com/" || "http://localhost:5000"
+    const heroku = "https://watsupp.herokuapp.com/"
+    const local = "http://localhost:5000"
 
     useEffect(() => {
         const newSocket = io(
-            port,
+            local,
             { query: { id } }
         )
         setSocket(newSocket)
